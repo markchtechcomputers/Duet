@@ -1,38 +1,41 @@
 # Duet
 
-**Duet** is an early-stage dating-app prototype focused on thoughtful profiles, mutual interest, and safer connections.
+**Duet** is a mobile-first dating app built around real accounts, adult profiles, mutual likes, private match chats, and basic safety controls.
 
-## What's included
+## Live app
 
-- `index.html` — responsive, mobile-first Duet design with a pink/coral gradient, profile cards, Explore, Likes, Chats, Profile editor, date ideas, astrology tab, theme toggle, and local demo interactions.
-- `prototype/Duet-original.html` — the original uploaded concept, preserved without deleting it.
-- `.gitignore` — ignores common local/editor files and secrets.
+- Website: https://duet.manlungshop.co.ke
+- Source: https://github.com/markchtechcomputers/Duet
 
-## Run locally
+## Live features
 
-No build tools are required. Open `index.html` in a modern browser, or run:
+- Supabase email/password authentication
+- Adult-only profile records (18+), editable name, age, gender, preferences, city, bio, interests and HTTPS photo URL
+- Shared profile discovery (no seeded or fictional sample profiles)
+- Persistent likes and mutual matching
+- Private messages between match participants, with Realtime updates
+- Report and block controls
+- Row Level Security policies on all public application tables
+
+## Architecture
+
+- `index.html` — responsive Duet UI and Supabase client
+- `prototype/Duet-original.html` — original uploaded concept preserved as reference
+- Supabase project: `idbffhctfilafiaqqxqk`
+- Vercel deployment is linked to the GitHub `main` branch
+
+The browser uses only the Supabase publishable key. Do not add a Supabase secret or service-role key to client code.
+
+## Important before broad public launch
+
+The live account and matching foundation is connected, but this is not a claim of full commercial readiness. Before promoting it widely, finish and test photo uploads/storage, account deletion and data export, production moderation workflows, email delivery and redirect settings, rate limits/anti-spam, accessibility, security review, and published Terms of Service and Privacy Policy. Duet does not currently verify identity. Use the report/block controls and meet new people in public places.
+
+## Development
+
+No local build step is required. Open `index.html` in a modern browser or run:
 
 ```bash
 python -m http.server 8000
 ```
 
-Then visit http://localhost:8000.
-
-## Important: prototype, not production
-
-The current `index.html` is a **browser-only demo**. It uses fictional sample profiles and stores demo interactions in the current browser's `localStorage`. Likes and messages are not sent to other people. There is no real account system, shared database, server-side messaging, moderation service, identity verification, or production privacy/security implementation. Some matching behavior is simulated for demonstration.
-
-The original concept file depended on a custom `claude.use(...)` host integration and remains preserved in `prototype/Duet-original.html`; that integration is not provided by GitHub Pages or a normal browser.
-
-Before launching a real dating service, implement and test authentication, age assurance, profiles/photos, mutual matching, private messaging, reporting/blocking, moderation, rate limiting, data export/deletion, and secure access rules. Publish reviewed Terms of Service and Privacy Policy, and never claim verification or safety controls that are not actually implemented.
-
-## Project status
-
-- [x] Responsive standalone UI prototype
-- [x] Profile editing and local demo state
-- [x] Explore, Likes, Chats, and theme toggle
-- [x] Reset control for demo data
-- [ ] Production backend and authentication
-- [ ] Real multi-user matching and messaging
-- [ ] Safety/moderation and privacy review
-- [ ] Automated tests and deployment checks
+Authentication and database features require the configured Supabase project and an allowed redirect URL.
